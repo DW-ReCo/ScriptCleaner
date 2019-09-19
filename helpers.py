@@ -16,3 +16,13 @@ def isTimeCode(date):
                 return True
             except ValueError:
                 return False
+
+
+commentIndicators = ['//',
+                     '/',
+                     '#',
+                     '*',
+                     '(',
+                     '--',
+                     '-->',
+                     '%', ]
