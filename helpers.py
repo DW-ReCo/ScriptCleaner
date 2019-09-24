@@ -25,4 +25,17 @@ commentIndicators = ['//',
                      '(',
                      '--',
                      '-->',
-                     '%', ]
+                     '%',
+                     '[]']
+
+
+commentMarker = {
+    'squareBrackets': "[]"
+}
+
+
+def insertToList(sentence, marker):
+    if isinstance(sentence, list):
+        sentence.insert(0, marker[0])
+        sentence.insert(len(sentence), marker[1])
+        return sentence

@@ -11,29 +11,24 @@ def removeLinesThatAreNotSentences(sentence):
         return sentence
 
 
-def markComments(sentence, commentMarkerPrefix, commentMarkerSuffix):
+def markComments(sentence, marker):
     commentIndicators = helpers.commentIndicators
-    if sentence:
-
-        try:
-            firstWord = isinstance(sentence[0], basestring)
-
-        except ValueError:
-            print('Input is not a word')
+    try:
+        isinstance(sentence[0], basestring)
+        if any(commentMarker in sentence[0] for commentMarker in commentIndicators):
+            return helpers.insertToList(sentence, marker)
         else:
-            if any(commentMarker in sentence[0] for commentMarker in commentIndicators):
-                sentence.insert(0, commentMarkerPrefix)
-                sentence.insert(len(sentence), commentMarkerSuffix)
-                return sentence
-
             return sentence
+
+    except:
+        print('First word of the sentence needs to be a string')
 
 
 def convertSentenceToListOfStrings(sentence):
     try:
         sentence
     except ValueError:
-        print('The file is empty')
+        print('could not find any text in the file')
     else:
         sentence = removeLinesThatAreNotSentences(sentence)
 
@@ -101,6 +96,7 @@ def cleanScript(sentence):
     listOfStrings = convertSentenceToListOfStrings(sentence)
     TimeCodesRemoved = removeTimeCodes(listOfStrings)
     speakersRemoved = removeSpeakers(TimeCodesRemoved)
-    finalList = markComments(speakersRemoved, '[', ']')
+    finalList = markComments(
+        speakersRemoved, helpers.commentMarker['squareBrackets'])
     sentence = joinListOfStrings(finalList)
     return sentence
