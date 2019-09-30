@@ -12,7 +12,16 @@ def removeLinesThatAreNotSentences(sentence):
 
 
 def markComments(sentence, marker):
-    commentIndicators = helpers.commentIndicators
+    commentIndicators = ['//',
+                         '/',
+                         '#',
+                         '*',
+                         '(',
+                         '--',
+                         '-->',
+                         '%',
+                         '[]']
+
     try:
         isinstance(sentence[0], basestring)
         if any(commentMarker in sentence[0] for commentMarker in commentIndicators):

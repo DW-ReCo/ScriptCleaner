@@ -18,17 +18,6 @@ def isTimeCode(date):
                 return False
 
 
-commentIndicators = ['//',
-                     '/',
-                     '#',
-                     '*',
-                     '(',
-                     '--',
-                     '-->',
-                     '%',
-                     '[]']
-
-
 commentMarker = {
     'squareBrackets': "[]"
 }
